@@ -55,38 +55,3 @@ resource "null_resource" "catalogue" {
     ]
   }
 }
-resource "aws_ec2_instance_state" "catalogue" {
-  instance_id = aws_instance.catalogue.id
-  state       = "stopped"
-  depends_on = [null_resource.catalogue]
-}
-resource "aws_ami_from_instance" "catalogue" {
-  name               = "${local.name}-${var.tags.Component}-${local.current_time}"
-  source_instance_id = module.catalogue.id
-  depends_on = [aws_ec2_instance_state.catalogue]
-}
-resource "null_resource" "catalogue_delete" {
-    triggers {
-        instance_id = module.catalogue.id
-    }
-    provisioner "local-exec" {
-        command = "aws ec2 terminate-instances --instance-ids ${module.catalogue.id}"
-    }
-    depends_on = [aws_ami_from_instance.catalogue]
-}
-resource "aws_launch_template" "catalogue" {
-  name = "${local.name}-${var.tags.Component}"
-  image_id = aws_ami_from_instance.catalogue.id
-  instance_initiated_shutdown_behavior = "terminate"
-  instance_type = "t2.micro"
-  update_default_version = true
-  vpc_security_group_ids = [data.aws_ssm_parameter.catalogue.sg_id.value]
-  tag_specifications {
-    resource_type = "instance"
-   tags = {
-      Name = "${local.name}-${var.tags.Component}"
-    }
-  }
-
-  
-}

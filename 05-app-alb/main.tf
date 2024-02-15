@@ -2,7 +2,7 @@ resource "aws_lb" "app_alb" {
   name               = "${local.name}-${var.tags.Component}"
   internal           = true
   load_balancer_type = "application"
-  security_groups    = [data.aws_ssm_parameter.app_alb.sg_id.value]
+  security_groups    = [data.aws_ssm_parameter.app_alb_sg_id.value]
   subnets            = split(",",data.aws_ssm_parameter.private_subnet_ids.value)
   tags = merge(
    var.common_tags,
@@ -19,7 +19,7 @@ resource "aws_lb_listener" "http" {
 
     fixed_response {
       content_type = "text/plain"
-      message_body = "hi, this response is from app al"
+      message_body = "hi, this response is from app alb"
       status_code  = "200"
     }
   }

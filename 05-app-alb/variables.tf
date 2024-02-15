@@ -7,7 +7,7 @@ variable "common_tags" {
 }
 variable "tags" {
     default = {
-        Component = "app_alb"
+        Component = "app-alb"
     }
 }
 variable "project_name" {

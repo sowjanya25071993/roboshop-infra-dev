@@ -172,12 +172,12 @@ resource "aws_security_group_rule" "catalogue_vpn" {
   security_group_id = module.catalogue.sg_id
 }
 resource "aws_security_group_rule" "catalogue_app_alb" {
-    source_security_group_id = module.app_alb.sg_id
+    source_security_group_id = module.catalogue.sg_id
   type              = "ingress"
-  from_port         = 8080
-  to_port           = 8080
+  from_port         = 80
+  to_port           = 80
   protocol          = "tcp"
-  security_group_id = module.catalogue.sg_id
+  security_group_id = module.app_alb.sg_id
 }
 
 resource "aws_security_group_rule" "user_vpn" {
@@ -295,4 +295,11 @@ resource "aws_security_group_rule" "catalogue_vpn_http" {
   protocol          = "tcp"
   security_group_id = module.catalogue.sg_id
 }
-
+resource "aws_security_group_rule" "mongodb_catalogue" {
+  source_security_group_id = module.catalogue.sg_id
+  type                     = "ingress"
+  from_port                = 27017
+  to_port                  = 27017
+  protocol                 = "tcp"
+  security_group_id        = module.mongodb.sg_id
+}
