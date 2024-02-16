@@ -96,7 +96,7 @@ resource "aws_autoscaling_group" "catalogue" {
   health_check_grace_period = 60
   health_check_type         = "ELB"
   desired_capacity          = 2
-  vpc_zone_identifier       = split(",", data.aws_ssm_parameter.private_subnet_ids.arn)
+  vpc_zone_identifier       = split(",", data.aws_ssm_parameter.private_subnet_ids.value)
   target_group_arns = [aws_lb_target_group.catalogue.arn] 
   launch_template {
     id      = aws_launch_template.catalogue.id
@@ -142,6 +142,6 @@ resource "aws_autoscaling_policy" "catalogue" {
       predefined_metric_type = "ASGAverageCPUUtilization"
     }
 
-    target_value = 5.0
+    target_value = 2.0
   }
 }

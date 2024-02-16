@@ -1,4 +1,4 @@
-resource "aws_acm_certificate" "cert" {
+resource "aws_acm_certificate" "daws76s" {
   domain_name       = "sowjanyaaws.xyz"
   validation_method = "DNS"
 
