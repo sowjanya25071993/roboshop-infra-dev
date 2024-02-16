@@ -3,6 +3,7 @@ resource "aws_lb_target_group" "catalogue" {
   port        = 8080
   protocol    = "HTTP"
   vpc_id      = data.aws_ssm_parameter.vpc_id.value
+  deregistration_delay = 60
 
  health_check {
       path                = "/health"
@@ -95,8 +96,8 @@ resource "aws_autoscaling_group" "catalogue" {
   health_check_grace_period = 60
   health_check_type         = "ELB"
   desired_capacity          = 2
-  launch_configuration      = aws_launch_configuration.foobar.name
-  vpc_zone_identifier       = split(",", data.aws_ssm_parameter.catalogue.arn)
+  vpc_zone_identifier       = split(",", data.aws_ssm_parameter.private_subnet_ids.arn)
+  target_group_arns = [aws_lb_target_group.catalogue.arn] 
   launch_template {
     id      = aws_launch_template.catalogue.id
     version = aws_launch_template.catalogue.latest_version
@@ -111,7 +112,7 @@ resource "aws_autoscaling_group" "catalogue" {
   tag {
     key = "name"
     value = "${local.name}-${var.tags.Component}"
-    propogate_at_launch = true
+    propagate_at_launch = true
   }
   timeouts {
     delete = "15m"
