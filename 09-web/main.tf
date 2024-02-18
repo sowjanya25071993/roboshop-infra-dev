@@ -119,7 +119,7 @@ resource "aws_autoscaling_group" "web" {
   }
 }
 resource "aws_lb_listener_rule" "web" {
-  listener_arn = data.aws_ssm_parameter.app_alb_listener_arn.value
+  listener_arn = data.aws_ssm_parameter.web_alb_listener_arn.value
   priority     = 10
 
   action {

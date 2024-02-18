@@ -20,7 +20,7 @@ resource "aws_lb_listener" "https" {
 
     fixed_response {
       content_type = "text/plain"
-      message_body = "hi, this response is from web alb"
+      message_body = "hi, this response is from web alb using https"
       status_code  = "200"
     }
   }

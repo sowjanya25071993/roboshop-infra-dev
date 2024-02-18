@@ -7,7 +7,7 @@ variable "common_tags" {
 }
 variable "tags" {
     default = {
-        Component = "web_alb"
+        Component = "web-alb"
     }
 }
 variable "project_name" {
@@ -17,5 +17,5 @@ variable "environment" {
     default = "dev"
 }
 variable "zone_name" {
-    default = "sowjanyaaws.xyz"
+    default = "sowjanyaaws.online"
 }

@@ -12,5 +12,5 @@ variable "environment" {
     default = "dev"
 }
 variable "zone_name" {
-    default = "sowjanyaaws.xyz"
+    default = "sowjanyaaws.online"
 }
