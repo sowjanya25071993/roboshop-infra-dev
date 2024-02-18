@@ -7,7 +7,7 @@ variable "common_tags" {
 }
 variable "tags" {
     default = {
-        Component = "catalogue"
+        Component = "acm"
     }
 }
 variable "project_name" {
