@@ -1,5 +1,5 @@
 resource "aws_acm_certificate" "daws76s" {
-  domain_name       = "sowjanyaaws.online"
+  domain_name       = "*.sowjanyaaws.online"
   validation_method = "DNS"
 
   tags = merge (
