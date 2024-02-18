@@ -66,7 +66,7 @@ resource "aws_ami_from_instance" "web" {
   source_instance_id = module.web.id
   depends_on = [aws_ec2_instance_state.web]
 }
-resource "null_resource" "catalogue_delete" {
+resource "null_resource" "web_delete" {
     triggers = {
         instance_id = module.web.id
     }
