@@ -1,120 +1,134 @@
 module "vpn" {
-    sg_description = "sg for vpn"
-    source = "../../terraform-aws-security-group"
-    project_name = var.project_name
-    environment = var.environment
-    vpc_id = data.aws_vpc.default.id
-    sg_name = "vpn"
-    #sg_ingress_rules = var.sg_ingress_rules_mongodb
+  source         = "git::https://github.com/daws-76s/terraform-aws-security-group.git?ref=main"
+  project_name   = var.project_name
+  environment    = var.environment
+  sg_description = "SG for VPN"
+  vpc_id         = data.aws_vpc.default.id
+  sg_name        = "vpn"
+  #sg_ingress_rules = var.mongodb_sg_ingress_rules
 }
-module "app_alb" {
-    sg_description = "sg for app-alb"
-    source = "../../terraform-aws-security-group"
-    project_name = var.project_name
-    environment = var.environment
-    vpc_id = data.aws_ssm_parameter.vpc_id.value
-    sg_name = "app-alb"
-    #sg_ingress_rules = var.sg_ingress_rules_mongodb
-}
-module "web_alb" {
-    sg_description = "sg for web-alb"
-    source = "../../terraform-aws-security-group"
-    project_name = var.project_name
-    environment = var.environment
-    vpc_id = data.aws_ssm_parameter.vpc_id.value
-    sg_name = "web-alb"
-    #sg_ingress_rules = var.sg_ingress_rules_mongodb
-}
+
 module "mongodb" {
-    sg_description = "sg for mongodb"
-    source = "../../terraform-aws-security-group"
-    project_name = var.project_name
-    environment = var.environment
-    vpc_id = data.aws_ssm_parameter.vpc_id.value
-    sg_name = "mongodb"
-    #sg_ingress_rules = var.sg_ingress_rules_mongodb
+  source         = "git::https://github.com/daws-76s/terraform-aws-security-group.git?ref=main"
+  project_name   = var.project_name
+  environment    = var.environment
+  sg_description = "SG for MongoDB"
+  vpc_id         = data.aws_ssm_parameter.vpc_id.value
+  sg_name        = "mongodb"
+  #sg_ingress_rules = var.mongodb_sg_ingress_rules
 }
-module "catalogue" {
-    sg_description = "sg for catalogue"
-    source = "../../terraform-aws-security-group"
-    project_name = var.project_name
-    environment = var.environment
-    vpc_id = data.aws_ssm_parameter.vpc_id.value
-    sg_name = "catalogue"
-    
-}
-module "user" {
-    sg_description = "sg for user"
-    source = "../../terraform-aws-security-group"
-    project_name = var.project_name
-    environment = var.environment
-    vpc_id = data.aws_ssm_parameter.vpc_id.value
-    sg_name = "user"
-    
-}
+
 module "redis" {
-    sg_description = "sg for redis"
-    source = "../../terraform-aws-security-group"
-    project_name = var.project_name
-    environment = var.environment
-    vpc_id = data.aws_ssm_parameter.vpc_id.value
-    sg_name = "redis"
-    
+  source         = "git::https://github.com/daws-76s/terraform-aws-security-group.git?ref=main"
+  project_name   = var.project_name
+  environment    = var.environment
+  sg_description = "SG for redis"
+  vpc_id         = data.aws_ssm_parameter.vpc_id.value
+  sg_name        = "redis"
+  #sg_ingress_rules = var.mongodb_sg_ingress_rules
 }
+
 module "mysql" {
-    sg_description = "sg for mysql"
-    source = "../../terraform-aws-security-group"
-    project_name = var.project_name
-    environment = var.environment
-    vpc_id = data.aws_ssm_parameter.vpc_id.value
-    sg_name = "mysql"
-    
+  source         = "git::https://github.com/daws-76s/terraform-aws-security-group.git?ref=main"
+  project_name   = var.project_name
+  environment    = var.environment
+  sg_description = "SG for mysql"
+  vpc_id         = data.aws_ssm_parameter.vpc_id.value
+  sg_name        = "mysql"
+  #sg_ingress_rules = var.mongodb_sg_ingress_rules
 }
+
 module "rabbitmq" {
-    sg_description = "sg for rabbitmq"
-    source = "../../terraform-aws-security-group"
-    project_name = var.project_name
-    environment = var.environment
-    vpc_id = data.aws_ssm_parameter.vpc_id.value
-    sg_name = "rabbitmq"
-    
+  source         = "git::https://github.com/daws-76s/terraform-aws-security-group.git?ref=main"
+  project_name   = var.project_name
+  environment    = var.environment
+  sg_description = "SG for rabbitmq"
+  vpc_id         = data.aws_ssm_parameter.vpc_id.value
+  sg_name        = "rabbitmq"
+  #sg_ingress_rules = var.mongodb_sg_ingress_rules
 }
+
+module "catalogue" {
+  source         = "git::https://github.com/daws-76s/terraform-aws-security-group.git?ref=main"
+  project_name   = var.project_name
+  environment    = var.environment
+  sg_description = "SG for catalogue"
+  vpc_id         = data.aws_ssm_parameter.vpc_id.value
+  sg_name        = "catalogue"
+  #sg_ingress_rules = var.mongodb_sg_ingress_rules
+}
+
+module "user" {
+  source         = "git::https://github.com/daws-76s/terraform-aws-security-group.git?ref=main"
+  project_name   = var.project_name
+  environment    = var.environment
+  sg_description = "SG for user"
+  vpc_id         = data.aws_ssm_parameter.vpc_id.value
+  sg_name        = "user"
+  #sg_ingress_rules = var.mongodb_sg_ingress_rules
+}
+
 module "cart" {
-    sg_description = "sg for cart"
-    source = "../../terraform-aws-security-group"
-    project_name = var.project_name
-    environment = var.environment
-    vpc_id = data.aws_ssm_parameter.vpc_id.value
-    sg_name = "cart"
-    
+  source         = "git::https://github.com/daws-76s/terraform-aws-security-group.git?ref=main"
+  project_name   = var.project_name
+  environment    = var.environment
+  sg_description = "SG for cart"
+  vpc_id         = data.aws_ssm_parameter.vpc_id.value
+  sg_name        = "cart"
+  #sg_ingress_rules = var.mongodb_sg_ingress_rules
 }
+
 module "shipping" {
-    sg_description = "sg for shipping"
-    source = "../../terraform-aws-security-group"
-    project_name = var.project_name
-    environment = var.environment
-    vpc_id = data.aws_ssm_parameter.vpc_id.value
-    sg_name = "shipping"
-    
+  source         = "git::https://github.com/daws-76s/terraform-aws-security-group.git?ref=main"
+  project_name   = var.project_name
+  environment    = var.environment
+  sg_description = "SG for shipping"
+  vpc_id         = data.aws_ssm_parameter.vpc_id.value
+  sg_name        = "shipping"
+  #sg_ingress_rules = var.mongodb_sg_ingress_rules
 }
+
 module "payment" {
-    sg_description = "sg for payment"
-    source = "../../terraform-aws-security-group"
-    project_name = var.project_name
-    environment = var.environment
-    vpc_id = data.aws_ssm_parameter.vpc_id.value
-    sg_name = "payment"
-    
+  source         = "git::https://github.com/daws-76s/terraform-aws-security-group.git?ref=main"
+  project_name   = var.project_name
+  environment    = var.environment
+  sg_description = "SG for payment"
+  vpc_id         = data.aws_ssm_parameter.vpc_id.value
+  sg_name        = "payment"
+  #sg_ingress_rules = var.mongodb_sg_ingress_rules
 }
+
 module "web" {
-    sg_description = "sg for web"
-    source = "../../terraform-aws-security-group"
-    project_name = var.project_name
-    environment = var.environment
-    vpc_id = data.aws_ssm_parameter.vpc_id.value
-    sg_name = "web"
-    
+  source         = "git::https://github.com/daws-76s/terraform-aws-security-group.git?ref=main"
+  project_name   = var.project_name
+  environment    = var.environment
+  sg_description = "SG for web"
+  vpc_id         = data.aws_ssm_parameter.vpc_id.value
+  sg_name        = "web"
+  #sg_ingress_rules = var.mongodb_sg_ingress_rules
 }
+
+module "app_alb" {
+  source         = "git::https://github.com/daws-76s/terraform-aws-security-group.git?ref=main"
+  project_name   = var.project_name
+  environment    = var.environment
+  sg_description = "SG for APP ALB"
+  vpc_id         = data.aws_ssm_parameter.vpc_id.value
+  sg_name        = "app-alb"
+  #sg_ingress_rules = var.mongodb_sg_ingress_rules
+}
+
+module "web_alb" {
+  source         = "git::https://github.com/daws-76s/terraform-aws-security-group.git?ref=main"
+  project_name   = var.project_name
+  environment    = var.environment
+  sg_description = "SG for Web ALB"
+  vpc_id         = data.aws_ssm_parameter.vpc_id.value
+  sg_name        = "web-alb"
+  #sg_ingress_rules = var.mongodb_sg_ingress_rules
+}
+
+# App ALB should accept connections only from VPN, since it is internal
 resource "aws_security_group_rule" "app_alb_vpn" {
   source_security_group_id = module.vpn.sg_id
   type                     = "ingress"

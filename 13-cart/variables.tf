@@ -20,5 +20,5 @@ variable "zone_name" {
     default = "sowjanyaaws.online"
 }
 variable "iam_instance_profile" {
-default = "default-role"
+default = "admin-role"
 }
