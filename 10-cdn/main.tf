@@ -21,7 +21,7 @@ resource "aws_cloudfront_distribution" "daws76s" {
     viewer_protocol_policy = "https-only"
   }
   ordered_cache_behavior {
-    path_pattern     = "/static/*"
+    path_pattern     = "/media/*"
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD", "OPTIONS"]
     target_origin_id = "web-${var.environment}.${var.zone_name}"
