@@ -69,3 +69,4 @@ post{
         echo 'i will always say hello when pipeline is success '
     }
 }
+}
